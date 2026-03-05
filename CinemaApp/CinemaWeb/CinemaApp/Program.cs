@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 namespace CinemaApp.Web
 {
     using CinemaApp.Data;
