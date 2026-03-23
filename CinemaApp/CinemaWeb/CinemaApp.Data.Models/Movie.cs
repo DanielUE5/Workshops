@@ -27,7 +27,6 @@ namespace CinemaApp.Data.Models
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; } = null!;
     
-        [Required]
         [MaxLength(ImageUrlMaxLength)]
         public string? ImageUrl { get; set; }
 
