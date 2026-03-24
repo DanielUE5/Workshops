@@ -6,10 +6,17 @@ namespace CinemaApp.Data.Configuration
 {
     public class MovieConfiguration : IEntityTypeConfiguration<Movie>
     {
-        public void Configure(EntityTypeBuilder<Movie> entity) 
+        private const string SeedOwnerId = "11111111-1111-1111-1111-111111111111";
+
+        public void Configure(EntityTypeBuilder<Movie> entity)
         {
             entity
-                .HasData(SeedMovies());
+                .HasOne(m => m.Owner)
+                .WithMany()
+                .HasForeignKey(m => m.OwnerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasData(SeedMovies());
         }
 
         private List<Movie> SeedMovies()
@@ -25,7 +32,8 @@ namespace CinemaApp.Data.Configuration
                     Director = "Mike Newel",
                     Duration = 157,
                     Description = "Harry Potter and the Goblet of Fire is a 2005 fantasy film directed by Mike Newell from a screenplay by Steve Kloves. It is based on the 2000 novel Harry Potter and the Goblet of Fire by J. K. Rowling.",
-                    ImageUrl = "https://m.media-amazon.com/images/M/MV5BMTI1NDMyMjExOF5BMl5BanBnXkFtZTcwOTc4MjQzMQ@@._V1_.jpg"
+                    ImageUrl = "https://m.media-amazon.com/images/M/MV5BMTI1NDMyMjExOF5BMl5BanBnXkFtZTcwOTc4MjQzMQ@@._V1_.jpg",
+                    OwnerId = SeedOwnerId
                 },
                 new Movie()
                 {
@@ -36,7 +44,8 @@ namespace CinemaApp.Data.Configuration
                     Director = "Peter Jackson",
                     Duration = 178,
                     Description = "The Lord of the Rings: The Fellowship of the Ring is a 2001 epic high fantasy adventure film directed by Peter Jackson from a screenplay by Fran Walsh, Philippa Boyens, and Jackson, based on 1954's The Fellowship of the Ring, the first volume of the novel The Lord of the Rings by J. R. R. Tolkien.",
-                    ImageUrl = "https://m.media-amazon.com/images/M/MV5BNzIxMDQ2YTctNDY4MC00ZTRhLTk4ODQtMTVlOWY4NTdiYmMwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                    ImageUrl = "https://m.media-amazon.com/images/M/MV5BNzIxMDQ2YTctNDY4MC00ZTRhLTk4ODQtMTVlOWY4NTdiYmMwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+                    OwnerId = SeedOwnerId
                 },
                 new Movie()
                 {
@@ -47,7 +56,8 @@ namespace CinemaApp.Data.Configuration
                     Director = "Christopher Nolan",
                     Duration = 148,
                     Description = "A thief who enters the dreams of others to steal secrets is given the inverse task: planting an idea into someone's mind.",
-                    ImageUrl = "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg"
+                    ImageUrl = "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg",
+                    OwnerId = SeedOwnerId
                 },
                 new Movie()
                 {
@@ -58,7 +68,8 @@ namespace CinemaApp.Data.Configuration
                     Director = "Christopher Nolan",
                     Duration = 152,
                     Description = "Batman faces the Joker, who seeks to create chaos in Gotham through psychological warfare.",
-                    ImageUrl = "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_FMjpg_UX1000_.jpg"
+                    ImageUrl = "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_FMjpg_UX1000_.jpg",
+                    OwnerId = SeedOwnerId
                 },
                 new Movie()
                 {
@@ -69,7 +80,8 @@ namespace CinemaApp.Data.Configuration
                     Director = "Christopher Nolan",
                     Duration = 169,
                     Description = "A group of explorers travel through a wormhole in space in search of a new habitable planet.",
-                    ImageUrl = "https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_.jpg"
+                    ImageUrl = "https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_.jpg",
+                    OwnerId = SeedOwnerId
                 },
                 new Movie()
                 {
@@ -80,7 +92,8 @@ namespace CinemaApp.Data.Configuration
                     Director = "James Cameron",
                     Duration = 162,
                     Description = "A paraplegic Marine is sent to the moon Pandora on a mission but becomes torn between following orders and protecting an alien civilization.",
-                    ImageUrl = "https://m.media-amazon.com/images/M/MV5BMDEzMmQwZjctZWU2My00MWNlLWE0NjItMDJlYTRlNGJiZjcyXkEyXkFqcGc@._V1_.jpg"
+                    ImageUrl = "https://m.media-amazon.com/images/M/MV5BMDEzMmQwZjctZWU2My00MWNlLWE0NjItMDJlYTRlNGJiZjcyXkEyXkFqcGc@._V1_.jpg",
+                    OwnerId = SeedOwnerId
                 },
                 new Movie()
                 {
@@ -91,7 +104,8 @@ namespace CinemaApp.Data.Configuration
                     Director = "James Cameron",
                     Duration = 195,
                     Description = "A love story unfolds on the doomed voyage of the Titanic.",
-                    ImageUrl = "https://m.media-amazon.com/images/M/MV5BYzYyN2FiZmUtYWYzMy00MzViLWJkZTMtOGY1ZjgzNWMwN2YxXkEyXkFqcGc@._V1_.jpg"
+                    ImageUrl = "https://m.media-amazon.com/images/M/MV5BYzYyN2FiZmUtYWYzMy00MzViLWJkZTMtOGY1ZjgzNWMwN2YxXkEyXkFqcGc@._V1_.jpg",
+                    OwnerId = SeedOwnerId
                 },
                 new Movie()
                 {
@@ -102,7 +116,8 @@ namespace CinemaApp.Data.Configuration
                     Director = "Lana Wachowski, Lilly Wachowski",
                     Duration = 136,
                     Description = "A computer hacker learns about the true nature of his reality and his role in the war against its controllers.",
-                    ImageUrl = "https://m.media-amazon.com/images/M/MV5BN2NmN2VhMTQtMDNiOS00NDlhLTliMjgtODE2ZTY0ODQyNDRhXkEyXkFqcGc@._V1_.jpg"
+                    ImageUrl = "https://m.media-amazon.com/images/M/MV5BN2NmN2VhMTQtMDNiOS00NDlhLTliMjgtODE2ZTY0ODQyNDRhXkEyXkFqcGc@._V1_.jpg",
+                    OwnerId = SeedOwnerId
                 },
                 new Movie()
                 {
@@ -113,7 +128,8 @@ namespace CinemaApp.Data.Configuration
                     Director = "Robert Zemeckis",
                     Duration = 142,
                     Description = "The story of a man with a kind heart and an incredible life journey.",
-                    ImageUrl = "https://m.media-amazon.com/images/M/MV5BNDYwNzVjMTItZmU5YS00YjQ5LTljYjgtMjY2NDVmYWMyNWFmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                    ImageUrl = "https://m.media-amazon.com/images/M/MV5BNDYwNzVjMTItZmU5YS00YjQ5LTljYjgtMjY2NDVmYWMyNWFmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+                    OwnerId = SeedOwnerId
                 },
                 new Movie()
                 {
@@ -124,7 +140,8 @@ namespace CinemaApp.Data.Configuration
                     Director = "Ridley Scott",
                     Duration = 155,
                     Description = "A betrayed Roman general seeks revenge against the corrupt emperor who murdered his family and sent him into slavery.",
-                    ImageUrl = "https://upload.wikimedia.org/wikipedia/en/f/fb/Gladiator_%282000_film_poster%29.png"
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/en/f/fb/Gladiator_%282000_film_poster%29.png",
+                    OwnerId = SeedOwnerId
                 },
                 new Movie()
                 {
@@ -135,7 +152,8 @@ namespace CinemaApp.Data.Configuration
                     Director = "Frank Darabont",
                     Duration = 142,
                     Description = "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
-                    ImageUrl = "https://m.media-amazon.com/images/M/MV5BMDAyY2FhYjctNDc5OS00MDNlLThiMGUtY2UxYWVkNGY2ZjljXkEyXkFqcGc@._V1_.jpg"
+                    ImageUrl = "https://m.media-amazon.com/images/M/MV5BMDAyY2FhYjctNDc5OS00MDNlLThiMGUtY2UxYWVkNGY2ZjljXkEyXkFqcGc@._V1_.jpg",
+                    OwnerId = SeedOwnerId
                 },
                 new Movie()
                 {
@@ -146,7 +164,8 @@ namespace CinemaApp.Data.Configuration
                     Director = "Quentin Tarantino",
                     Duration = 154,
                     Description = "The lives of two hitmen, a boxer, and a gangster intertwine in four tales of violence and redemption.",
-                    ImageUrl = "https://www.tallengestore.com/cdn/shop/products/PulpFiction-JohnTravoltaAndSamuelLJackson-MovieStill1_d3db6d19-235a-45aa-97b2-ab690665c224.jpg?v=1684129898"
+                    ImageUrl = "https://www.tallengestore.com/cdn/shop/products/PulpFiction-JohnTravoltaAndSamuelLJackson-MovieStill1_d3db6d19-235a-45aa-97b2-ab690665c224.jpg?v=1684129898",
+                    OwnerId = SeedOwnerId
                 }
             };
 

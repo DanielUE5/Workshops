@@ -21,6 +21,7 @@ namespace CinemaApp.Web
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddScoped<IMovieService, MovieService>();
+            builder.Services.AddScoped<IWatchlistService, WatchlistService>();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options =>
             {

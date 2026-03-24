@@ -4,6 +4,7 @@ using CinemaApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CinemaApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260323224608_AddUserMovieTable")]
+    partial class AddUserMovieTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,10 +56,6 @@ namespace CinemaApp.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("OwnerId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateOnly>("ReleaseDate")
                         .HasColumnType("date");
 
@@ -66,8 +65,6 @@ namespace CinemaApp.Data.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OwnerId");
 
                     b.ToTable("Movies");
 
@@ -81,7 +78,6 @@ namespace CinemaApp.Data.Migrations
                             Genre = "Fantasy",
                             ImageUrl = "https://m.media-amazon.com/images/M/MV5BMTI1NDMyMjExOF5BMl5BanBnXkFtZTcwOTc4MjQzMQ@@._V1_.jpg",
                             IsDeleted = false,
-                            OwnerId = "11111111-1111-1111-1111-111111111111",
                             ReleaseDate = new DateOnly(2005, 11, 1),
                             Title = "Harry Potter and the Goblet of Fire"
                         },
@@ -94,7 +90,6 @@ namespace CinemaApp.Data.Migrations
                             Genre = "Fantasy",
                             ImageUrl = "https://m.media-amazon.com/images/M/MV5BNzIxMDQ2YTctNDY4MC00ZTRhLTk4ODQtMTVlOWY4NTdiYmMwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
                             IsDeleted = false,
-                            OwnerId = "11111111-1111-1111-1111-111111111111",
                             ReleaseDate = new DateOnly(2001, 5, 1),
                             Title = "Lord of the Rings"
                         },
@@ -107,7 +102,6 @@ namespace CinemaApp.Data.Migrations
                             Genre = "Sci-Fi",
                             ImageUrl = "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg",
                             IsDeleted = false,
-                            OwnerId = "11111111-1111-1111-1111-111111111111",
                             ReleaseDate = new DateOnly(2010, 7, 16),
                             Title = "Inception"
                         },
@@ -120,7 +114,6 @@ namespace CinemaApp.Data.Migrations
                             Genre = "Action",
                             ImageUrl = "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_FMjpg_UX1000_.jpg",
                             IsDeleted = false,
-                            OwnerId = "11111111-1111-1111-1111-111111111111",
                             ReleaseDate = new DateOnly(2008, 7, 18),
                             Title = "The Dark Knight"
                         },
@@ -133,7 +126,6 @@ namespace CinemaApp.Data.Migrations
                             Genre = "Sci-Fi",
                             ImageUrl = "https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_.jpg",
                             IsDeleted = false,
-                            OwnerId = "11111111-1111-1111-1111-111111111111",
                             ReleaseDate = new DateOnly(2014, 11, 7),
                             Title = "Interstellar"
                         },
@@ -146,7 +138,6 @@ namespace CinemaApp.Data.Migrations
                             Genre = "Sci-Fi",
                             ImageUrl = "https://m.media-amazon.com/images/M/MV5BMDEzMmQwZjctZWU2My00MWNlLWE0NjItMDJlYTRlNGJiZjcyXkEyXkFqcGc@._V1_.jpg",
                             IsDeleted = false,
-                            OwnerId = "11111111-1111-1111-1111-111111111111",
                             ReleaseDate = new DateOnly(2009, 12, 18),
                             Title = "Avatar"
                         },
@@ -159,7 +150,6 @@ namespace CinemaApp.Data.Migrations
                             Genre = "Romance",
                             ImageUrl = "https://m.media-amazon.com/images/M/MV5BYzYyN2FiZmUtYWYzMy00MzViLWJkZTMtOGY1ZjgzNWMwN2YxXkEyXkFqcGc@._V1_.jpg",
                             IsDeleted = false,
-                            OwnerId = "11111111-1111-1111-1111-111111111111",
                             ReleaseDate = new DateOnly(1997, 12, 19),
                             Title = "Titanic"
                         },
@@ -172,7 +162,6 @@ namespace CinemaApp.Data.Migrations
                             Genre = "Sci-Fi",
                             ImageUrl = "https://m.media-amazon.com/images/M/MV5BN2NmN2VhMTQtMDNiOS00NDlhLTliMjgtODE2ZTY0ODQyNDRhXkEyXkFqcGc@._V1_.jpg",
                             IsDeleted = false,
-                            OwnerId = "11111111-1111-1111-1111-111111111111",
                             ReleaseDate = new DateOnly(1999, 3, 31),
                             Title = "The Matrix"
                         },
@@ -185,7 +174,6 @@ namespace CinemaApp.Data.Migrations
                             Genre = "Drama",
                             ImageUrl = "https://m.media-amazon.com/images/M/MV5BNDYwNzVjMTItZmU5YS00YjQ5LTljYjgtMjY2NDVmYWMyNWFmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
                             IsDeleted = false,
-                            OwnerId = "11111111-1111-1111-1111-111111111111",
                             ReleaseDate = new DateOnly(1994, 7, 6),
                             Title = "Forrest Gump"
                         },
@@ -198,7 +186,6 @@ namespace CinemaApp.Data.Migrations
                             Genre = "Action",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/en/f/fb/Gladiator_%282000_film_poster%29.png",
                             IsDeleted = false,
-                            OwnerId = "11111111-1111-1111-1111-111111111111",
                             ReleaseDate = new DateOnly(2000, 5, 5),
                             Title = "Gladiator"
                         },
@@ -211,7 +198,6 @@ namespace CinemaApp.Data.Migrations
                             Genre = "Drama",
                             ImageUrl = "https://m.media-amazon.com/images/M/MV5BMDAyY2FhYjctNDc5OS00MDNlLThiMGUtY2UxYWVkNGY2ZjljXkEyXkFqcGc@._V1_.jpg",
                             IsDeleted = false,
-                            OwnerId = "11111111-1111-1111-1111-111111111111",
                             ReleaseDate = new DateOnly(1994, 9, 23),
                             Title = "The Shawshank Redemption"
                         },
@@ -224,7 +210,6 @@ namespace CinemaApp.Data.Migrations
                             Genre = "Crime",
                             ImageUrl = "https://www.tallengestore.com/cdn/shop/products/PulpFiction-JohnTravoltaAndSamuelLJackson-MovieStill1_d3db6d19-235a-45aa-97b2-ab690665c224.jpg?v=1684129898",
                             IsDeleted = false,
-                            OwnerId = "11111111-1111-1111-1111-111111111111",
                             ReleaseDate = new DateOnly(1994, 10, 14),
                             Title = "Pulp Fiction"
                         });
@@ -360,24 +345,6 @@ namespace CinemaApp.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "11111111-1111-1111-1111-111111111111",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "d122befb-50d8-4109-93d7-1b0009d771a4",
-                            Email = "seeduser@cinemaapp.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "SEEDUSER@CINEMAAPP.COM",
-                            NormalizedUserName = "SEEDUSER@CINEMAAPP.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAECCO7lfe3j73vXLpBhxgXweyrR2F4z7eKK9hl3M1pJRFQHBIaVb1Jsr06pxnFeIXgQ==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "88eb3e59-1504-422d-84a9-12eec087d8f9",
-                            TwoFactorEnabled = false,
-                            UserName = "seeduser@cinemaapp.com"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -463,17 +430,6 @@ namespace CinemaApp.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("CinemaApp.Data.Models.Movie", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("CinemaApp.Data.Models.UserMovie", b =>

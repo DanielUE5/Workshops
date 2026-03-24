@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 using static CinemaApp.Data.Common.EntityValidationConstants.Movie;
+
 namespace CinemaApp.Data.Models
 {
     public class Movie
@@ -14,7 +16,7 @@ namespace CinemaApp.Data.Models
         [Required]
         [MaxLength(GenreMaxLength)]
         public string Genre { get; set; } = null!;
-        
+
         public DateOnly ReleaseDate { get; set; }
 
         [Required]
@@ -26,10 +28,15 @@ namespace CinemaApp.Data.Models
         [Required]
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; } = null!;
-    
+
         [MaxLength(ImageUrlMaxLength)]
         public string? ImageUrl { get; set; }
 
         public bool IsDeleted { get; set; } = false;
+
+        [Required]
+        public string OwnerId { get; set; } = null!;
+
+        public virtual IdentityUser Owner { get; set; } = null!;
     }
 }

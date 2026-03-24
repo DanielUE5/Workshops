@@ -15,5 +15,7 @@
         public string Duration { get; set; } = null!;
 
         public string? ImageUrl { get; set; }
+
+        public bool IsInWatchlist { get; set; }
     }
 }

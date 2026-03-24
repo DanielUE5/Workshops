@@ -30,8 +30,4 @@
     <Folder Include="Seeding\Utilities\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="ApplicationDbContext.cs" />
-  </ItemGroup>
-
 </Project>
